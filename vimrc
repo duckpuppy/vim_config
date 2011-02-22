@@ -31,6 +31,9 @@ set novisualbell " Turn off the visual bell
 set ttyfast " Smoother changes
 set nowrap " Don't wrap lines
 set anti " Antialias fonts
+set selectmode=mouse,key " Use the mouse for selectmode
+set selection=exclusive " Don't include the last character in the selection
+set keymodel=startsel,stopsel
 
 " OS Specific
 if has("unix")

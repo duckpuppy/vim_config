@@ -13,8 +13,6 @@ set lines=50
 set columns=100
 
 set guifont=Consolas
-set selectmode=mouse,key,cmd
-set keymodel=
 set mousehide
 
 " Toggle menu and toolbar
