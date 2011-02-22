@@ -34,6 +34,7 @@ set anti " Antialias fonts
 set selectmode=mouse,key " Use the mouse for selectmode
 set selection=exclusive " Don't include the last character in the selection
 set keymodel=startsel,stopsel
+set completeopt=longest,menuone " Make completion menu match the longest common text
 
 " OS Specific
 if has("unix")
@@ -90,6 +91,11 @@ endif
 " Map SuperCleverTab function to the TAB key
 "inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
+" Configure Ruby completion
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+
 "Set up SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
@@ -112,6 +118,17 @@ map <c-a> ggVG
 
 "Remove search highlights
 nnoremap <silent> <esc> :noh<return><esc>
+
+" Completion keybindings
+" Make the enter key accept the highlighted completion item
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " Abbreviations
 
