@@ -13,16 +13,16 @@ hi Cursor         guifg=#212121           guibg=#9ca9b7
 hi CursorLine	  guifg=#ffffff		      guibg=#6c8095
 hi Directory      guifg=#6c8095            guibg=NONE
 hi VertSplit      guifg=#b6b6b6           guibg=#a6a6a6
-hi Folded         guifg=#424242           guibg=NONE     gui=italic
+hi Folded         guifg=#727272           guibg=NONE     gui=italic
 hi FoldColumn	  guifg=#9ca9b7           guibg=NONE     gui=italic
 hi vimFold	      guifg=#dee4ea		      guibg=NONE     gui=italic
 hi IncSearch      guifg=#212121           guibg=#b6b6b6
-hi LineNr         guifg=#424242           guibg=NONE
+hi LineNr         guifg=#727272           guibg=NONE
 hi ModeMsg        guifg=#8f9d6a           guibg=NONE
 hi MoreMsg        guifg=#8f9d6a           guibg=NONE
-hi NonText        guifg=#424242           guibg=NONE
+hi NonText        guifg=#727272           guibg=NONE
 hi Search         guifg=#212121           guibg=#b6b6b6     gui=underline
-hi StatusLine     guifg=#9ca9b7           guibg=#424242     
+hi StatusLine     guifg=#9ca9b7           guibg=#727272     
 hi StatusLineNC   guifg=#9ca9b7           guibg=#212121     
 hi Visual         guifg=#212121           guibg=#9ca9b7     gui=italic
 hi WildMenu       guifg=#6c8095           guibg=#ffffff
@@ -33,7 +33,7 @@ hi Title	      guifg=#cf6a4c		      guibg=NONE
 
 "Syntax hilight groups
 
-hi Comment        guifg=#424242           gui=italic
+hi Comment        guifg=#727272           gui=italic
 hi Constant       guifg=#7587a6           gui=bold
 hi Exception      guifg=#cf6a4c           gui=NONE
 hi String         guifg=#8f9d6a           gui=NONE
@@ -57,7 +57,7 @@ hi Todo           guifg=#f9ee98		      guibg=NONE         gui=bold
 hi Pmenu          guifg=#212121           guibg=#9ca9b7
 hi PmenuSel       guifg=#ffffff           guibg=#6c8095
 hi PmenuSbar      guibg=#b6b6b6
-hi PmenuThumb     guifg=#424242
+hi PmenuThumb     guifg=#727272
 
 "more groups
 hi pythonClass  guifg=#cda869 guibg=NONE gui=NONE
