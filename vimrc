@@ -59,7 +59,6 @@ set laststatus=2
 
 set statusline=%f
 set statusline+=[%{&ff}]
-set statusline+=%{perforce#RulerStatus()}
 set statusline+=%{fugitive#statusline()}
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
 set statusline+=%h
@@ -90,10 +89,6 @@ endif
 "		endif
 "	endif
 "endfunction
-
-" Perforce configuration
-let g:p4Presets = 'nrc-perforce.devlab.norc.s1.com:1666 patricka_desktop patricka, P4CONFIG'
-let g:p4DefaultPreset = 1 " Start with the second setting in p4Presets.
 
 " Key Mappings
 
