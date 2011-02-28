@@ -58,6 +58,7 @@ let mapleader = ";"
 set laststatus=2
 
 set statusline=%f
+set statusline+=[%{&ff}]
 set statusline+=%{perforce#RulerStatus()}
 set statusline+=%{fugitive#statusline()}
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
