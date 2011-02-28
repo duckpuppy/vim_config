@@ -68,7 +68,7 @@ set statusline+=\ %P
 " set statusline=%<%f\ %y\ %h%m%r%{fugitive#statusline()}\ %{exists('g:loaded_rvm')?rvm#statusline_ft_ruby():''}%=%-14.(%l,%c%V%)\ %P
 
 if has("autocmd")
-	au FileType ruby set tabstop=2 shiftwidth=2 " Change indent size to 2 for ruby files
+	au FileType ruby setlocal tabstop=2 shiftwidth=2 " Change indent size to 2 for ruby files
 	au BufReadCmd *.epub call zip#Browse(expand("<amatch>")) " Open files inside ePubs
 endif
 
