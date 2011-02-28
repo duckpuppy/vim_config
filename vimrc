@@ -69,6 +69,7 @@ set statusline+=\ %P
 
 if has("autocmd")
 	au FileType ruby set tabstop=2 shiftwidth=2 " Change indent size to 2 for ruby files
+	au BufReadCmd *.epub call zip#Browse(expand("<amatch>")) " Open files inside ePubs
 endif
 
 " Clever tab key
