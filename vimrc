@@ -68,7 +68,6 @@ set statusline+=\ %P
 " set statusline=%<%f\ %y\ %h%m%r%{fugitive#statusline()}\ %{exists('g:loaded_rvm')?rvm#statusline_ft_ruby():''}%=%-14.(%l,%c%V%)\ %P
 
 if has("autocmd")
-	au BufReadCmd *.epub call zip#Browse(expand("<amatch>")) " Open files inside ePubs
 endif
 
 " Clever tab key
