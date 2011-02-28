@@ -118,3 +118,6 @@
 	path = bundle/matchit
 	url = https://github.com/tsaleh/vim-matchit.git
 	ignore = untracked
+[submodule "bundle/archive"]
+	path = bundle/archive
+	url = https://github.com/ervandew/archive.git
