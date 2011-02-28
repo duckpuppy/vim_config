@@ -1,6 +1,6 @@
 filetype off
-call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 set nocompatible " Set nocompatible mode on
 
@@ -51,10 +51,14 @@ else
 	echoerr "Unknown OS"
 endif
 
+" Set mapleader
+let mapleader = ";"
+
 " Set statusline
 set laststatus=2
 
 set statusline=%f
+set statusline+=%{perforce#RulerStatus()}
 set statusline+=%{fugitive#statusline()}
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
 set statusline+=%h
@@ -68,6 +72,7 @@ set statusline+=\ %P
 " set statusline=%<%f\ %y\ %h%m%r%{fugitive#statusline()}\ %{exists('g:loaded_rvm')?rvm#statusline_ft_ruby():''}%=%-14.(%l,%c%V%)\ %P
 
 if has("autocmd")
+	au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
 endif
 
 " Clever tab key
@@ -84,6 +89,10 @@ endif
 "		endif
 "	endif
 "endfunction
+
+" Perforce configuration
+let g:p4Presets = 'nrc-perforce.devlab.norc.s1.com:1666 patricka_desktop patricka, P4CONFIG'
+let g:p4DefaultPreset = 1 " Start with the second setting in p4Presets.
 
 " Key Mappings
 
@@ -117,6 +126,10 @@ map <c-a> ggVG
 
 "Remove search highlights
 nnoremap <silent> <esc> :noh<return><esc>
+
+" Change the working directory of this buffer to the location of the file in
+" the buffer
+map <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Completion keybindings
 inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
