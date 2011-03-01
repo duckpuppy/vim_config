@@ -136,6 +136,13 @@ inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
+" QuickFix window
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+
+" Gtags mapping
+map <C-\> :GtagsCursor<CR>
+
 " Abbreviations
 
 " Change colorscheme from default to vilight
