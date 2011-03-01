@@ -76,21 +76,6 @@ if has("autocmd")
 	au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
 endif
 
-" Clever tab key
-"function! SuperCleverTab()
-"	if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-"		return "\<Tab>"
-"	else
-"		if &omnifunc != ''
-"			return "\<C-X>\<C-O>"
-"		elseif &dictionary != ''
-"			return "\<C-K>"
-"		else
-"			return "\<C-N>"
-"		endif
-"	endif
-"endfunction
-
 " Key Mappings
 
 " Map SuperCleverTab function to the TAB key
