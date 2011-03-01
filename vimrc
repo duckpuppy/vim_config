@@ -147,8 +147,8 @@ if has('win32')
 	nmap <silent> ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>:echo '<C-R>*'<CR>
 else
 	" These copy to both the Gnome and X Server clipboard
-	nmap <silent> ,cs :let @*=expand("%")<CR> | :let @+=expand("%")<CR>:echo '<C-R>*'<CR>
-	nmap <silent> ,cl :let @*=expand("%:p")<CR> | :let @+=expand("%:p")<CR>:echo '<C-R>*'<CR>
+	nmap <silent> ,cs :let @*=expand("%")<CR>:echo '<C-R>*'<CR> \| :let @+=expand("%")<CR>
+	nmap <silent> ,cl :let @*=expand("%:p")<CR>:echo '<C-R>*'<CR> \| :let @+=expand("%:p")<CR>
 endif
 
 " Gtags mapping
