@@ -88,9 +88,12 @@ let g:rubycomplete_rails = 1
 
 "Set up SuperTab
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
 
 " Make <tab> work more intuitively in visual mode
-vmap <tab> >gv
+vmap <tab> >g
 vmap <s-tab> <gv
 
 " Tab key bindings, Firefox like
@@ -102,9 +105,6 @@ vmap <s-tab> <gv
 :imap <C-tab> <Esc>:tabnext<CR>i
 :nmap <C-t> :tabnew<CR>
 :imap <C-t> <Esc>:tabnew<CR>
-
-"Select all
-map <c-a> ggVG
 
 "Remove search highlights
 nnoremap <silent> <esc> :noh<return><esc>
