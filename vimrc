@@ -140,6 +140,17 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
+" Copy filename to the clipboard
+if has('win32')
+	nmap <silent> ,cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>:echo '<C-R>*'<CR>
+	nmap <silent> ,cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>:echo '<C-R>*'<CR>
+	nmap <silent> ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>:echo '<C-R>*'<CR>
+else
+	" These copy to both the Gnome and X Server clipboard
+	nmap <silent> ,cs :let @*=expand("%")<CR> | :let @+=expand("%")<CR>:echo '<C-R>*'<CR>
+	nmap <silent> ,cl :let @*=expand("%:p")<CR> | :let @+=expand("%:p")<CR>:echo '<C-R>*'<CR>
+endif
+
 " Gtags mapping
 map <C-\> :GtagsCursor<CR>
 
