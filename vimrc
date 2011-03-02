@@ -36,6 +36,7 @@ set selection=exclusive " Don't include the last character in the selection
 set keymodel=startsel,stopsel
 set completeopt=longest,menuone " Make completion menu match the longest common text
 set switchbuf=usetab,useopen " Make vim open existing tabs/windows if a file is already open rather than opening a new one
+set confirm " Prompt to save on destroying buffer with unsaved changes
 
 " OS Specific
 if has("unix")
@@ -48,6 +49,7 @@ if has("unix")
 	endif
 elseif has("win32")
 	" Configuration for Windows-native vim
+	source $VIMRUNTIME/mswin.vim
 else
 	echoerr "Unknown OS"
 endif
