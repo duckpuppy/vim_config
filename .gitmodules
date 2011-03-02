@@ -124,3 +124,6 @@
 [submodule "bundle/regex"]
 	path = bundle/regex
 	url = https://github.com/ervandew/regex.git
+[submodule "bundle/lookup"]
+	path = bundle/lookup
+	url = https://github.com/ervandew/lookup.git
