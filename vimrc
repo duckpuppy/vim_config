@@ -74,12 +74,15 @@ set statusline+=\ %P
 
 if has("autocmd")
 	au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
+	" Configure omnicomplete to use syntax completion if no other omnifunc exists
+	au FileType *
+				\ if &omnifunc == "" |
+				\ 	setlocal omnifunc=syntaxcomplete#Complete |
+				\ endif
 endif
 
 " Key Mappings
 
-" Map SuperCleverTab function to the TAB key
-"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
 " Configure Ruby completion
 let g:rubycomplete_buffer_loading = 1
