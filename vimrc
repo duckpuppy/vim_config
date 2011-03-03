@@ -144,7 +144,18 @@ else
 endif
 
 " Gtags mapping
-map <C-\> :GtagsCursor<CR>
+map <C-]> :GtagsCursor<CR>
+
+" Capture the output of a command to a new tab
+function! Capture (cmd)
+	redir => message
+	silent execute a:cmd
+	redir END
+	tabnew
+	silent put=message
+	set nomodified
+endfunction
+command! -nargs=+ -complete=command Capture call Capture(<q-args>)
 
 " Abbreviations
 
