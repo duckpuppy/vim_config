@@ -127,3 +127,21 @@
 [submodule "bundle/lookup"]
 	path = bundle/lookup
 	url = https://github.com/ervandew/lookup.git
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = https://github.com/wincent/Command-T.git
+[submodule "bundle/autocomlpop"]
+	path = bundle/autocomlpop
+	url = https://github.com/vim-scripts/AutoComplPop.git
+[submodule "bundle/conque"]
+	path = bundle/conque
+	url = https://github.com/rson/vim-conque.git
+[submodule "bundle/vividchalk"]
+	path = bundle/vividchalk
+	url = https://github.com/tpope/vim-vividchalk.git
+[submodule "bundle/railscasts"]
+	path = bundle/railscasts
+	url = https://github.com/jpo/vim-railscasts-theme.git

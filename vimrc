@@ -88,7 +88,7 @@ endif
 " Configure Ruby completion
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
+" let g:rubycomplete_rails = 1
 
 "Set up SuperTab
 let g:SuperTabDefaultCompletionType = "context"
@@ -157,5 +157,6 @@ command! -nargs=+ -complete=command Capture call Capture(<q-args>)
 " Abbreviations
 
 " Change colorscheme from default to vilight
-colorscheme vilight
-
+" colorscheme vilight
+" colorscheme vividchalk
+colorscheme railscasts
