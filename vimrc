@@ -93,8 +93,8 @@ let g:rubycomplete_classes_in_global = 1
 "Set up SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 " let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-" let g:SuperTabLongestEnhanced = 1
-" let g:SuperTabLongestHighlight = 1
+let g:SuperTabLongestEnhanced = 1
+let g:SuperTabLongestHighlight = 1
 
 " Make <tab> work more intuitively in visual mode
 vmap <tab> >g
