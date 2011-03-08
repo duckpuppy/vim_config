@@ -145,3 +145,6 @@
 [submodule "bundle/railscasts"]
 	path = bundle/railscasts
 	url = https://github.com/jpo/vim-railscasts-theme.git
+[submodule "bundle/auto_mkdir"]
+	path = bundle/auto_mkdir
+	url = https://github.com/DataWraith/auto_mkdir.git
