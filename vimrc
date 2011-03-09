@@ -154,6 +154,9 @@ function! Capture (cmd)
 endfunction
 command! -nargs=+ -complete=command Capture call Capture(<q-args>)
 
+" AutoComplPop Configuration
+let g:acp_enableAtStartup = 0
+
 " Abbreviations
 
 " Change colorscheme from default to vilight
