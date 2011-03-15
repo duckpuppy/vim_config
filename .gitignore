@@ -4,3 +4,5 @@ eclim/*
 plugin/eclim.vim
 bundle/perforce/*
 after/plugin/perforce.vim
+after/plugin/custom.vim
+
