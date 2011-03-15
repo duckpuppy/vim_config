@@ -75,12 +75,15 @@ set statusline+=\ %P
 " set statusline=%<%f\ %y\ %h%m%r%{fugitive#statusline()}\ %{exists('g:loaded_rvm')?rvm#statusline_ft_ruby():''}%=%-14.(%l,%c%V%)\ %P
 
 if has("autocmd")
-	au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
-	" Configure omnicomplete to use syntax completion if no other omnifunc exists
-	au FileType *
-				\ if &omnifunc == "" |
-				\ 	setlocal omnifunc=syntaxcomplete#Complete |
-				\ endif
+	augroup vimrc
+		autocmd!
+		au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
+		" Configure omnicomplete to use syntax completion if no other omnifunc exists
+		au FileType *
+					\ if &omnifunc == "" |
+					\ 	setlocal omnifunc=syntaxcomplete#Complete |
+					\ endif
+	augroup END
 endif
 
 " Key Mappings
