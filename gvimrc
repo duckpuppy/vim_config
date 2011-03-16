@@ -1,5 +1,8 @@
 " OS Specific configuration
-if has("gui_macvm") " MacOS
+if has("gui_macvim") " MacOS
+	" Replace default Cmd-T mapping with CommandT
+	macmenu &File.New\ Tab key=<nop>
+	map <D-t> :CommandT<CR>
 elseif has("gui_gtk2") " Gnome
 elseif has("x11") " X11
 elseif has("gui_win32") " Windows
