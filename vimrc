@@ -88,6 +88,12 @@ endif
 
 " Key Mappings
 
+" Insert mode cursor movement
+imap <C-h> <C-o>h
+imap <C-j> <C-o>j
+imap <C-k> <C-o>k
+imap <C-l> <C-o>l
+
 " Configure Ruby completion
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
