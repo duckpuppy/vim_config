@@ -42,6 +42,7 @@ set confirm " Prompt to save on destroying buffer with unsaved changes
 if has("unix")
 	" Configuration for both Cygwin and Linux
 	set shellcmdflag=-ic " Use an interactive shell for bang(!)
+	let g:vimhome = $HOME . "/.vim"
 	if has("win32unix")
 		" Configuration for Cygwin only
 	else
@@ -50,6 +51,7 @@ if has("unix")
 elseif has("win32")
 	" Configuration for Windows-native vim
 	source $VIMRUNTIME/mswin.vim
+	let g:vimhome = $HOME . "/vimfiles"
 else
 	echoerr "Unknown OS"
 endif
@@ -79,6 +81,8 @@ if has("autocmd")
 		autocmd!
 		au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
 		" Configure omnicomplete to use syntax completion if no other omnifunc exists
+		au FileType eruby call ExtractSnips(g:vimhome . "/snippets/html", "eruby")
+		au FileType eruby call ExtractSnips(g:vimhome . "/after/snippets/html", "eruby")
 		au FileType *
 					\ if &omnifunc == "" |
 					\ 	setlocal omnifunc=syntaxcomplete#Complete |
@@ -87,6 +91,12 @@ if has("autocmd")
 endif
 
 " Key Mappings
+
+" Insert mode cursor movement
+imap <C-h> <C-o>h
+imap <C-j> <C-o>j
+imap <C-k> <C-o>k
+imap <C-l> <C-o>l
 
 " Configure Ruby completion
 let g:rubycomplete_buffer_loading = 1
