@@ -82,6 +82,7 @@ if has("autocmd")
 		au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
 		" Configure omnicomplete to use syntax completion if no other omnifunc exists
 		au FileType eruby call ExtractSnips(g:vimhome . "/snippets/html", "eruby")
+		au FileType eruby call ExtractSnips(g:vimhome . "/after/snippets/html", "eruby")
 		au FileType *
 					\ if &omnifunc == "" |
 					\ 	setlocal omnifunc=syntaxcomplete#Complete |
