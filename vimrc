@@ -1,20 +1,20 @@
 filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
-
-set nocompatible " Set nocompatible mode on
-
+ 
+" set nocompatible " Set nocompatible mode on
+ 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
+ 
 syntax on " Turn on syntax highlighting
-
+ 
 " Indent automatically depending on filetype
 filetype plugin indent on
 set autoindent
 set smartindent
 set cindent
-
+ 
 set ruler " Turn on the ruler
 set nu " Turn on line numbering.  Turn it off with "set nonu"
 set ic " Case insensitive search
@@ -37,7 +37,7 @@ set keymodel=startsel,stopsel
 set completeopt=longest,menuone " Make completion menu match the longest common text
 set switchbuf=usetab,useopen " Make vim open existing tabs/windows if a file is already open rather than opening a new one
 set confirm " Prompt to save on destroying buffer with unsaved changes
-
+ 
 " OS Specific
 if has("unix")
 	" Configuration for both Cygwin and Linux
@@ -74,7 +74,6 @@ set statusline+=%=
 set statusline+=%c,
 set statusline+=%l/%L
 set statusline+=\ %P
-" set statusline=%<%f\ %y\ %h%m%r%{fugitive#statusline()}\ %{exists('g:loaded_rvm')?rvm#statusline_ft_ruby():''}%=%-14.(%l,%c%V%)\ %P
 
 if has("autocmd")
 	augroup vimrc
@@ -123,16 +122,13 @@ vmap <s-tab> <gv
 :nmap <C-t> :tabnew<CR>
 :imap <C-t> <Esc>:tabnew<CR>
 
-"Remove search highlights
-nnoremap <silent> <esc> :noh<return><esc>
-
 " Change the working directory of this buffer to the location of the file in
 " the buffer
 map <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Completion keybindings
 inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-" inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
@@ -173,6 +169,4 @@ let g:acp_enableAtStartup = 0
 " Abbreviations
 
 " Change colorscheme from default to vilight
-" colorscheme vilight
-" colorscheme vividchalk
 colorscheme railscasts
