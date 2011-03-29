@@ -170,6 +170,9 @@ else
 	nmap <silent> ,cl :let @*=expand("%:p")<CR>:echo '<C-R>*'<CR> \| :let @+=expand("%:p")<CR>
 endif
 
+map <leader>f :FufFile **/<CR>
+map <leader>b :FufBuffer<CR>
+
 " Gtags mapping
 map <C-]> :GtagsCursor<CR>
 
