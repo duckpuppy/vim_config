@@ -1,20 +1,20 @@
 filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
- 
+
 " set nocompatible " Set nocompatible mode on
- 
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
- 
+
 syntax on " Turn on syntax highlighting
- 
+
 " Indent automatically depending on filetype
 filetype plugin indent on
 set autoindent
 set smartindent
 set cindent
- 
+
 set ruler " Turn on the ruler
 set nu " Turn on line numbering.  Turn it off with "set nonu"
 set ic " Case insensitive search
@@ -37,7 +37,7 @@ set keymodel=startsel,stopsel
 set completeopt=longest,menuone " Make completion menu match the longest common text
 set switchbuf=usetab,useopen " Make vim open existing tabs/windows if a file is already open rather than opening a new one
 set confirm " Prompt to save on destroying buffer with unsaved changes
- 
+
 " OS Specific
 if has("unix")
 	" Configuration for both Cygwin and Linux
@@ -75,6 +75,18 @@ set statusline+=%c,
 set statusline+=%l/%L
 set statusline+=\ %P
 
+let g:jah_Quickfix_Win_Height = 10
+
+" toggles the quickfix window.
+command -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+	if exists("g:qfix_win") && a:forced == 0
+		cclose
+	else
+		execute "copen " . g:jah_Quickfix_Win_Height
+	endif
+endfunction
+
 if has("autocmd")
 	augroup vimrc
 		autocmd!
@@ -87,6 +99,14 @@ if has("autocmd")
 					\ 	setlocal omnifunc=syntaxcomplete#Complete |
 					\ endif
 	augroup END
+
+	" used to track the quickfix window
+	augroup QFixToggle
+		autocmd!
+		autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+		autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
+	augroup END
+
 endif
 
 " Key Mappings
@@ -135,6 +155,7 @@ inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDow
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " QuickFix window
+nmap <silent> \` :QFix<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
