@@ -50,7 +50,7 @@ if has("unix")
 	endif
 elseif has("win32")
 	" Configuration for Windows-native vim
-	source $VIMRUNTIME/mswin.vim
+"	source $VIMRUNTIME/mswin.vim
 	let g:vimhome = $HOME . "/vimfiles"
 else
 	echoerr "Unknown OS"
@@ -75,10 +75,11 @@ set statusline+=%c,
 set statusline+=%l/%L
 set statusline+=\ %P
 
+let g:netrw_liststyle = 3
 let g:jah_Quickfix_Win_Height = 10
 
 " toggles the quickfix window.
-command -bang -nargs=? QFix call QFixToggle(<bang>0)
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
 	if exists("g:qfix_win") && a:forced == 0
 		cclose
@@ -112,10 +113,10 @@ endif
 " Key Mappings
 
 " Insert mode cursor movement
-imap <C-h> <C-o>h
-imap <C-j> <C-o>j
-imap <C-k> <C-o>k
-imap <C-l> <C-o>l
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
 
 " Configure Ruby completion
 let g:rubycomplete_buffer_loading = 1
@@ -155,7 +156,7 @@ inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDow
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " QuickFix window
-nmap <silent> \` :QFix<CR>
+nmap <silent> <leader>` :QFix<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
@@ -170,8 +171,8 @@ else
 	nmap <silent> ,cl :let @*=expand("%:p")<CR>:echo '<C-R>*'<CR> \| :let @+=expand("%:p")<CR>
 endif
 
-nnoremap <leader>f :FufFile **/<CR>
-nnoremap <leader>b :FufBuffer<CR>
+nnoremap <C-t> :FufFile **/<CR>
+nnoremap <C-b> :FufBuffer<CR>
 
 " Gtags mapping
 map <C-]> :GtagsCursor<CR>
@@ -186,6 +187,9 @@ function! Capture (cmd)
 	set nomodified
 endfunction
 command! -nargs=+ -complete=command Capture call Capture(<q-args>)
+
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
 
 " AutoComplPop Configuration
 let g:acp_enableAtStartup = 0
