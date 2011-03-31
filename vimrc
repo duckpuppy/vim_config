@@ -171,7 +171,7 @@ else
 	nmap <silent> ,cl :let @*=expand("%:p")<CR>:echo '<C-R>*'<CR> \| :let @+=expand("%:p")<CR>
 endif
 
-nnoremap <C-t> :FufFile **/<CR>
+nnoremap <C-t> :FufFile<CR>
 nnoremap <C-b> :FufBuffer<CR>
 
 " Gtags mapping
