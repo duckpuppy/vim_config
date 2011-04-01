@@ -148,6 +148,3 @@
 [submodule "bundle/auto_mkdir"]
 	path = bundle/auto_mkdir
 	url = https://github.com/DataWraith/auto_mkdir.git
-[submodule "bundle/taglisttoo"]
-	path = bundle/taglisttoo
-	url = https://github.com/ervandew/taglisttoo.git
