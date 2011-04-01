@@ -175,7 +175,7 @@ nnoremap <C-t> :FufFile<CR>
 nnoremap <C-b> :FufBuffer<CR>
 
 " Gtags mapping
-map <C-]> :GtagsCursor<CR>
+map <C-\>] :GtagsCursor<CR>
 
 " Capture the output of a command to a new tab
 function! Capture (cmd)
