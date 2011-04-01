@@ -77,6 +77,7 @@ set statusline+=\ %P
 
 let g:netrw_liststyle = 3
 let g:jah_Quickfix_Win_Height = 10
+let g:ragtag_global_maps = 1
 
 " toggles the quickfix window.
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
