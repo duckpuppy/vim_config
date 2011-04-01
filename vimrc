@@ -37,7 +37,7 @@ set keymodel=startsel,stopsel
 set completeopt=longest,menuone " Make completion menu match the longest common text
 set switchbuf=usetab,useopen " Make vim open existing tabs/windows if a file is already open rather than opening a new one
 set confirm " Prompt to save on destroying buffer with unsaved changes
-
+set updatetime=100 " Set update time to 1/10 second
 " OS Specific
 if has("unix")
 	" Configuration for both Cygwin and Linux
@@ -110,6 +110,9 @@ if has("autocmd")
 
 endif
 
+" Configure taglist
+let Tlist_Show_One_File = 1
+
 " Key Mappings
 
 " Insert mode cursor movement
@@ -159,6 +162,9 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 nmap <silent> <leader>` :QFix<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
+
+" Taglist
+nnoremap <silent> <F8> :TlistToggle<CR>
 
 " Copy filename to the clipboard
 if has('win32')
