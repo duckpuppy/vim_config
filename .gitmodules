@@ -150,3 +150,6 @@
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = https://github.com/MarcWeber/snipmate.vim
