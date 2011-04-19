@@ -114,6 +114,10 @@ endif
 " Configure taglist
 let Tlist_Show_One_File = 1
 
+"Configure tagbar
+let g:tagbar_autofocus = 1
+let g:tagbar_expand = 1
+
 " Key Mappings
 
 " Insert mode cursor movement
@@ -167,6 +171,9 @@ map <C-p> :cp<CR>
 " Taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
 
+" TagBar
+nnoremap <silent> <F9> :TagbarToggle<CR>
+
 " Copy filename to the clipboard
 if has('win32')
 	nmap <silent> ,cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>:echo '<C-R>*'<CR>
@@ -178,7 +185,7 @@ else
 	nmap <silent> ,cl :let @*=expand("%:p")<CR>:echo '<C-R>*'<CR> \| :let @+=expand("%:p")<CR>
 endif
 
-nnoremap <C-t> :FufFile<CR>
+nnoremap <C-o> :FufFile<CR>
 nnoremap <C-b> :FufBuffer<CR>
 
 " Gtags mapping
