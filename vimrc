@@ -95,9 +95,10 @@ if has("autocmd")
 		au FileType java setlocal omnifunc=javacomplete#Complete
 		au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 		au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
-		" Configure omnicomplete to use syntax completion if no other omnifunc exists
 		au FileType eruby call ExtractSnips(g:vimhome . "/snippets/html", "eruby")
 		au FileType eruby call ExtractSnips(g:vimhome . "/after/snippets/html", "eruby")
+		au BufRead,BufNewFile pom.xml call ExtractSnips(g:vimhome . "/after/snippets/maven", "xml")
+		" Configure omnicomplete to use syntax completion if no other omnifunc exists
 		au FileType *
 					\ if &omnifunc == "" |
 					\ 	setlocal omnifunc=syntaxcomplete#Complete |
