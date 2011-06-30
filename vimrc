@@ -95,7 +95,7 @@ if has("autocmd")
 		au FileType java setlocal omnifunc=javacomplete#Complete
 		au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 		au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
-		au BufRead,BufNewFile pom.xml set filetype=maven.xml
+		au BufRead,BufNewFile pom.xml set filetype=xml.maven
 		" Configure omnicomplete to use syntax completion if no other omnifunc exists
 		au FileType *
 					\ if &omnifunc == "" |
