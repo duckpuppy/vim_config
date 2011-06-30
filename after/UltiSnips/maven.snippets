@@ -1,0 +1,104 @@
+snippet pom
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>$1</groupId>
+	<artifactId>$2</artifactId>
+	<version>${3:0.01}-SNAPSHOT</version>
+	<packaging>${4:jar}</packaging>
+	<name>${5:$2}</name>
+	$0
+</project>
+endsnippet
+
+snippet depman
+<dependencyManagement>
+	<dependencies>
+		$0
+	</dependencies>
+</dependencyManagement>
+endsnippet
+
+snippet deps
+<dependencies>
+	$0
+</dependencies>
+endsnippet
+
+snippet dep
+<dependency>
+	<groupId>$1</groupId>
+	<artifactId>$2</artifactId>
+	<version>$3</version>
+</dependency>
+endsnippet
+
+# A scoped dependency
+snippet sdep
+<dependency>
+	<groupId>$1</groupId>
+	<artifactId>$2</artifactId>
+	<version>$3</version>
+	<scope>$4</scope>
+</dependency>
+endsnippet
+
+# A test dependency
+snippet tdep
+<dependency>
+	<groupId>$1</groupId>
+	<artifactId>$2</artifactId>
+	<version>$3</version>
+	<scope>test</scope>
+</dependency>
+endsnippet
+
+snippet build
+<build>
+	$0
+</build>
+endsnippet
+
+snippet plugs
+<plugins>
+	$0
+</plugins>
+endsnippet
+
+snippet plug
+<plugin>
+	<groupId>${1:org.apache.maven.plugins}</groupId>
+	<artifactId>$2</artifactId>
+	<version>$3</version>
+	$0
+</plugin>
+endsnippet
+
+snippet config
+<configuration>
+	$0
+</configuration>
+endsnippet
+
+snippet execs
+<executions>
+	$0
+</executions>
+endsnippet
+
+snippet exec
+<execution>
+	${1:<id>$2</id>}
+	<phase>$3</phase>
+	$0
+</execution>
+endsnippet
+
+snippet goals
+<goals>
+	$0
+</goals>
+endsnippet
+
+snippet goal
+<goal>$0</goal>
+endsnippet
