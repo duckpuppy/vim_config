@@ -66,10 +66,6 @@ interface $1
 } // END interface $1
 endsnippet
 
-snippet php "<?php ?>"
-<?`!v exists('g:UltiSnipsOpenTag') ? g:UltiSnipsOpenTag : 'php'` $0 ?>
-endsnippet
-
 snippet $_ "$_ENV['']"
 \$_ENV['${1:variable}']
 endsnippet
@@ -197,8 +193,14 @@ snippet echoh "<?php echo htmlentities(___) ?>"
 <?`!v exists('g:UltiSnipsOpenTagWithEcho') ? g:UltiSnipsOpenTagWithEcho : 'php echo'` htmlentities(${1:\$var}, ENT_QUOTES, 'utf-8') ?>$0
 endsnippet
 
-snippet php "?>…<?php"
-?>$0<?`!v exists('g:UltiSnipsOpenTag') ? g:UltiSnipsOpenTag : 'php'`
+snippet php
+<?`!v exists('g:UltiSnipsOpenTag') ? g:UltiSnipsOpenTag : 'php'` $0 ?>
+endsnippet
+
+snippet phpf
+<?`!v exists('g:UltiSnipsOpenTag') ? g:UltiSnipsOpenTag : 'php'`
+$0
+?>
 endsnippet
 
 snippet for "for( )"
