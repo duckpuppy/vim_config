@@ -119,6 +119,11 @@ let Tlist_Show_One_File = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_expand = 1
 
+" Configure UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 " Key Mappings
 
 " Insert mode cursor movement
