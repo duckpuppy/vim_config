@@ -1,5 +1,6 @@
 *.swp
 *~
+*.pyc
 eclim/*
 plugin/eclim.vim
 bundle/perforce/*
