@@ -123,6 +123,8 @@ let g:tagbar_expand = 1
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="normal"
+let g:UltiSnipsSnippetsDir=g:vimhome . "/after/UltiSnips"
 
 " Key Mappings
 
