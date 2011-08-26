@@ -38,6 +38,9 @@ set completeopt=longest,menuone " Make completion menu match the longest common 
 set switchbuf=usetab,useopen " Make vim open existing tabs/windows if a file is already open rather than opening a new one
 set confirm " Prompt to save on destroying buffer with unsaved changes
 set updatetime=100 " Set update time to 1/10 second
+
+set tags=./tags;
+
 " OS Specific
 if has("unix")
 	" Configuration for both Cygwin and Linux
@@ -139,37 +142,13 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 " let g:rubycomplete_rails = 1
 
-"Set up SuperTab
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:SuperTabLongestEnhanced = 1
-let g:SuperTabLongestHighlight = 1
-
 " Make <tab> work more intuitively in visual mode
 vmap <tab> >g
 vmap <s-tab> <gv
 
-" Tab key bindings, Firefox like
-:nmap <C-S-tab> :tabprevious<CR>
-:nmap <C-tab> :tabnext<CR>
-:map <C-S-tab> :tabprevious<CR>
-:map <C-tab> :tabnext<CR>
-:imap <C-S-tab> <Esc>:tabprevious<CR>i
-:imap <C-tab> <Esc>:tabnext<CR>i
-:nmap <C-t> :tabnew<CR>
-:imap <C-t> <Esc>:tabnew<CR>
-
 " Change the working directory of this buffer to the location of the file in
 " the buffer
 map <Leader>cd :cd %:p:h<CR>:pwd<CR>
-
-" Completion keybindings
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " QuickFix window
 nmap <silent> <leader>` :QFix<CR>
