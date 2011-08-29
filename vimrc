@@ -129,18 +129,21 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="normal"
 let g:UltiSnipsSnippetsDir=g:vimhome . "/after/UltiSnips"
 
+" Configure Ruby completion
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+" let g:rubycomplete_rails = 1
+
 " Key Mappings
+
+" Make <CTRL>-L hide search hilights
+nnoremap <silent> <C-L> :noh<CR><C-L>
 
 " Insert mode cursor movement
 inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
-
-" Configure Ruby completion
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-" let g:rubycomplete_rails = 1
 
 " Make <tab> work more intuitively in visual mode
 vmap <tab> >g
@@ -174,6 +177,7 @@ endif
 
 nnoremap <C-o> :FufFile<CR>
 nnoremap <C-b> :FufBuffer<CR>
+nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 
 " Gtags mapping
 map <C-\>] :GtagsCursor<CR>
