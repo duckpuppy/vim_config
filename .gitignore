@@ -1,3 +1,4 @@
+bundle/*/doc/tags-ja
 *.swp
 *~
 *.pyc
@@ -7,3 +8,4 @@ bundle/perforce/*
 after/plugin/perforce.vim
 after/plugin/custom.vim
 .netrwhist
+
