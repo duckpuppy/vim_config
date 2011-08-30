@@ -40,7 +40,6 @@ git_bundles = [
 	"https://github.com/ervandew/regex.git",
 	"https://github.com/ervandew/archive.git",
   "https://github.com/tsaleh/vim-align.git",
-  "https://github.com/tsaleh/vim-tcomment.git",
 	"https://github.com/vim-scripts/Decho.git",
 	"https://github.com/vim-scripts/bufexplorer.zip.git",
 	"https://github.com/vim-scripts/jQuery.git",
@@ -51,13 +50,13 @@ git_bundles = [
 	"https://github.com/vim-scripts/gtags.vim.git",
 	"https://github.com/vim-scripts/javacomplete.git",
 	"https://github.com/vim-scripts/L9.git",
-	"https://github.com/vim-scripts/perforce.git",
 	"https://github.com/vim-scripts/scratch.vim.git",
-	"https://github.com/hsitz/PyScratch.git",
+	#"https://github.com/hsitz/PyScratch.git",
 	"https://github.com/vim-scripts/taglist.vim.git",
 	"https://github.com/framallo/taskwarrior.vim.git",
 	"https://github.com/vim-scripts/vilight.vim.git",
 	"https://github.com/kchmck/vim-coffee-script.git",
+	"https://github.com/vim-scripts/perforce.git",
 ]
 
 vim_org_scripts = [

@@ -95,6 +95,7 @@ endfunction
 if has("autocmd")
 	augroup vimrc
 		autocmd!
+		au FileType ruby setlocal nocindent
 		au FileType java setlocal omnifunc=javacomplete#Complete
 		au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 		au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
