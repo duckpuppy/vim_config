@@ -42,7 +42,6 @@ git_bundles = [
   "https://github.com/tsaleh/vim-align.git",
   "https://github.com/tsaleh/vim-tcomment.git",
 	"https://github.com/vim-scripts/Decho.git",
-	"https://github.com/ervandew/archive.git",
 	"https://github.com/vim-scripts/bufexplorer.zip.git",
 	"https://github.com/vim-scripts/jQuery.git",
 	"https://github.com/mattn/gist-vim.git",
