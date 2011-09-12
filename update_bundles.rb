@@ -56,7 +56,7 @@ git_bundles = [
 	"https://github.com/framallo/taskwarrior.vim.git",
 	"https://github.com/vim-scripts/vilight.vim.git",
 	"https://github.com/kchmck/vim-coffee-script.git",
-	"https://github.com/vim-scripts/perforce.git",
+	#"https://github.com/vim-scripts/perforce.git",
 ]
 
 vim_org_scripts = [
