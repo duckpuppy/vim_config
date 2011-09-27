@@ -92,6 +92,11 @@ function! QFixToggle(forced)
 	endif
 endfunction
 
+" Jekyll config
+let g:jekyll_path = "~/Development/duckpuppy_blog"
+let g:jekyll_post_suffix = "md"
+let g:jekyll_post_published = "false"
+
 if has("autocmd")
 	augroup vimrc
 		autocmd!
@@ -105,6 +110,7 @@ if has("autocmd")
 					\ if &omnifunc == "" |
 					\ 	setlocal omnifunc=syntaxcomplete#Complete |
 					\ endif
+		execute "au BufNewFile,BufRead " . g:jekyll_path . "/* syn match jekyllYamlFrontmatter /\\%^---\\_.\\{-}---$/ contains=@Spell"
 	augroup END
 
 	" used to track the quickfix window
@@ -136,6 +142,11 @@ let g:rubycomplete_classes_in_global = 1
 " let g:rubycomplete_rails = 1
 
 " Key Mappings
+
+" Jekyll
+map <leader>jb :JekyllBuild<CR>
+map <leader>jn :JekyllPost<CR>
+map <leader>jl :JekyllList<CR>
 
 " Make <CTRL>-L hide search hilights
 nnoremap <silent> <C-L> :noh<CR><C-L>

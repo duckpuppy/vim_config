@@ -233,7 +233,7 @@ fun! HtmlIndentGet(lnum)
     endif
 
     " [-- special handling for <javascript>: use cindent --]
-    let js = '<script.*type\s*=\s*.*java'
+    let js = '<script'
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " by Tye Zdrojewski <zdro@yahoo.com>, 05 Jun 2006
@@ -269,6 +269,11 @@ fun! HtmlIndentGet(lnum)
 
     let ind = <SID>HtmlIndentSum(lnum, -1)
     let ind = ind + <SID>HtmlIndentSum(a:lnum, 0)
+
+    " Fix for conditional comment
+    if getline(a:lnum) =~ '\c<!--.*<\(html\|body\).*-->'
+        let ind = ind - 1
+    endif
 
     if restore_ic == 0
         setlocal noic

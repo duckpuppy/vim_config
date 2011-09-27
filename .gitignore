@@ -8,4 +8,4 @@ bundle/perforce/*
 after/plugin/perforce.vim
 after/plugin/custom.vim
 .netrwhist
-
+bundle/*/doc/tags

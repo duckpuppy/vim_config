@@ -26,11 +26,6 @@ if exists("*GetRubyIndent")
   finish
 endif
 
-" Set up some defaults.
-if !exists('g:ruby_hanging_indent')
-  let g:ruby_hanging_indent = 1
-endif
-
 let s:cpo_save = &cpo
 set cpo&vim
 
@@ -86,12 +81,12 @@ let s:end_skip_expr = s:skip_expr .
       \ ' && getline(".") =~ "^\\s*\\<\\(while\\|until\\|for\\):\\@!\\>")'
 
 " Regex that defines continuation lines, not including (, {, or [.
-let s:non_bracket_continuation_regex = '\%([\\.,:*/%+]\|and\|or\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\)\s*\%(#.*\)\=$'
+let s:non_bracket_continuation_regex = '\%([\\.,:*/%+]\|\<and\|\<or\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\)\s*\%(#.*\)\=$'
 
 " Regex that defines continuation lines.
 " TODO: this needs to deal with if ...: and so on
 let s:continuation_regex =
-      \ '\%([({[\\.,:*/%+]\|and\|or\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\)\s*\%(#.*\)\=$'
+      \ '\%([({[\\.,:*/%+]\|\<and\|\<or\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\)\s*\%(#.*\)\=$'
 
 " Regex that defines bracket continuations
 let s:bracket_continuation_regex = '\%([({[]\)\s*\%(#.*\)\=$'
@@ -278,8 +273,7 @@ function GetRubyIndent(...)
           \ s:end_skip_expr) > 0
       let line = getline('.')
       if strpart(line, 0, col('.') - 1) =~ '=\s*$' &&
-            \ strpart(line, col('.') - 1, 2) !~ 'do' &&
-            \ g:ruby_hanging_indent
+            \ strpart(line, col('.') - 1, 2) !~ 'do'
         let ind = virtcol('.') - 1
       else
         let ind = indent('.')
@@ -358,12 +352,7 @@ function GetRubyIndent(...)
   let col = s:Match(lnum, s:ruby_indent_keywords)
   if col > 0
     call cursor(lnum, col)
-
-    if g:ruby_hanging_indent
-      let ind = virtcol('.') - 1 + &sw
-    else
-      let ind = indent('.') + &sw
-    endif
+    let ind = virtcol('.') - 1 + &sw
     " TODO: make this better (we need to count them) (or, if a searchpair
     " fails, we know that something is lacking an end and thus we indent a
     " level
