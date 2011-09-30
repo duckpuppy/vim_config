@@ -53,7 +53,7 @@ if has("unix")
 	endif
 elseif has("win32")
 	" Configuration for Windows-native vim
-"	source $VIMRUNTIME/mswin.vim
+	"	source $VIMRUNTIME/mswin.vim
 	let g:vimhome = $HOME . "/vimfiles"
 else
 	echoerr "Unknown OS"
@@ -140,6 +140,21 @@ let g:UltiSnipsSnippetsDir=g:vimhome . "/after/UltiSnips"
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 " let g:rubycomplete_rails = 1
+
+" re-indent file
+nnoremap <silent> <F4> :call <SID>ReindentFile()<CR>
+function! <SID>ReindentFile()
+	" Save cursor position
+	let l = line(".")
+	let c = col(".")
+
+	" Reindent file
+	let cmd = "normal!" . "gg=G"
+	execute cmd
+
+	" Move cursor back to saved position
+	call cursor(l, c)
+endfunction
 
 " Key Mappings
 
