@@ -11,6 +11,8 @@ git_bundles = [
 	"https://github.com/tpope/vim-ragtag.git",
   "https://github.com/tpope/vim-repeat.git",
   "https://github.com/tpope/vim-cucumber.git",
+	"https://github.com/tpope/vim-rake.git",
+	"https://github.com/tpope/vim-bundler.git",
 	"https://github.com/scrooloose/nerdcommenter.git",
 	"https://github.com/scrooloose/nerdtree.git",
 	"https://github.com/tpope/vim-abolish.git",

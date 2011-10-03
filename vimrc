@@ -110,7 +110,6 @@ if has("autocmd")
 					\ if &omnifunc == "" |
 					\ 	setlocal omnifunc=syntaxcomplete#Complete |
 					\ endif
-		execute "au BufNewFile,BufRead " . g:jekyll_path . "/* syn match jekyllYamlFrontmatter /\\%^---\\_.\\{-}---$/ contains=@Spell"
 	augroup END
 
 	" used to track the quickfix window
