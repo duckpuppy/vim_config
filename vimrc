@@ -29,7 +29,7 @@ set shiftwidth=4 " Number of spaces for autoindent
 set noexpandtab " Don't expand tabs into spaces
 set novisualbell " Turn off the visual bell
 set ttyfast " Smoother changes
-set nowrap " Don't wrap lines
+set wrap " wrap lines
 set anti " Antialias fonts
 set selectmode=mouse,key " Use the mouse for selectmode
 set selection=exclusive " Don't include the last character in the selection
@@ -38,6 +38,9 @@ set completeopt=longest,menuone " Make completion menu match the longest common 
 set switchbuf=usetab,useopen " Make vim open existing tabs/windows if a file is already open rather than opening a new one
 set confirm " Prompt to save on destroying buffer with unsaved changes
 set updatetime=100 " Set update time to 1/10 second
+set wildmenu
+set wildmode=list:longest,full
+set showbreak=->
 
 set tags=./tags;
 
@@ -96,6 +99,25 @@ endfunction
 let g:jekyll_path = "~/Development/duckpuppy_blog"
 let g:jekyll_post_suffix = "md"
 let g:jekyll_post_published = "false"
+
+" mapping to make movements operate on 1 screen line in wrap mode
+function! ScreenMovement(movement)
+   if &wrap
+      return "g" . a:movement
+   else
+      return a:movement
+   endif
+endfunction
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
 
 if has("autocmd")
 	augroup vimrc
