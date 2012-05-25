@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import vim
 import os
+import types
+import vim
+
+from UltiSnips.Compatibility import as_unicode
 
 def vim_string(inp):
     """ Creates a vim-friendly string from a group of
@@ -10,13 +13,14 @@ def vim_string(inp):
     """
     def conv(obj):
         if isinstance(obj, list):
-            return u'[' + u",".join([conv(o) for o in obj]) + u']'
+            rv = as_unicode('[' + ','.join(conv(o) for o in obj) + ']')
         elif isinstance(obj, dict):
-            return u'{' + u','.join([
-                u"%s:%s" % (conv(key), conv(value))
-                for key, value in obj.iteritems()]) + u'}'
+            rv = as_unicode('{' + ','.join([
+                "%s:%s" % (conv(key), conv(value))
+                for key, value in obj.iteritems()]) + '}')
         else:
-            return u'"%s"' % str(obj).replace(u'"', u'\\"')
+            rv = as_unicode('"%s"') % as_unicode(obj).replace('"', '\\"')
+        return rv
     return conv(inp)
 
 class IndentUtil(object):
@@ -43,6 +47,12 @@ class IndentUtil(object):
             else:
                 new_ind.append(ch)
         return "".join(new_ind)
+
+    def ntabs_to_proper_indent(self, ntabs):
+        line_ind = ntabs * self.sw * " "
+        line_ind = self.indent_to_spaces(line_ind)
+        line_ind = self.spaces_to_indent(line_ind)
+        return line_ind
 
     def indent_to_spaces(self, indent):
         """ Converts indentation to spaces respecting vim settings. """

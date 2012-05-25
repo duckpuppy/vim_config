@@ -9,10 +9,10 @@ into Logical Units called Tokens.
 import string
 import re
 
-from Geometry import Position
+from UltiSnips.Geometry import Position
 
 __all__ = [
-    "tokenize", "EscapeCharToken", "TransformationToken", "TabStopToken",
+    "tokenize", "EscapeCharToken", "VisualToken", "TransformationToken", "TabStopToken",
     "MirrorToken", "PythonCodeToken", "VimLCodeToken", "ShellCodeToken"
 ]
 
@@ -43,8 +43,10 @@ class _TextIterator(object):
         return rv
 
     def peek(self, count = 1):
-        try:
+        if count > 1: # This might return '' if nothing is found
             return self._text[self._idx:self._idx + count]
+        try:
+            return self._text[self._idx]
         except IndexError:
             return None
 
@@ -114,7 +116,7 @@ class TabStopToken(Token):
 
     @classmethod
     def starts_here(klass, stream):
-        return klass.CHECK.match(stream.peek(10)) != None
+        return klass.CHECK.match(stream.peek(10)) is not None
 
     def _parse(self, stream, indent):
         stream.next() # $
@@ -122,7 +124,7 @@ class TabStopToken(Token):
 
         self.no = _parse_number(stream)
 
-        if stream.peek() is ":":
+        if stream.peek() == ":":
             stream.next()
         self.initial_text = _parse_till_closing_brace(stream)
 
@@ -131,12 +133,41 @@ class TabStopToken(Token):
             self.start, self.end, self.no, self.initial_text
         )
 
+class VisualToken(Token):
+    TOKEN = "${VISUAL}"
+    CHECK = re.compile(r"^[ \t]*\${VISUAL}")
+
+    @classmethod
+    def starts_here(klass, stream):
+        return klass.CHECK.match(stream.peek(10000)) is not None
+
+    def _parse(self, stream, indent):
+        self.leading_whitespace = ""
+        while stream.peek() != self.TOKEN[0]:
+            self.leading_whitespace += stream.next()
+
+        for i in range(len(self.TOKEN)):
+            stream.next()
+
+        # Make sure that a ${VISUAL} at the end of a line behaves like a block
+        # of text and does not introduce another line break.
+        while 1:
+            nc = stream.peek()
+            if nc is None or nc not in '\r\n':
+                break
+            stream.next()
+
+    def __repr__(self):
+        return "VisualToken(%r,%r)" % (
+            self.start, self.end
+        )
+
 class TransformationToken(Token):
     CHECK = re.compile(r'^\${\d+\/')
 
     @classmethod
     def starts_here(klass, stream):
-        return klass.CHECK.match(stream.peek(10)) != None
+        return klass.CHECK.match(stream.peek(10)) is not None
 
     def _parse(self, stream, indent):
         stream.next() # $
@@ -160,7 +191,7 @@ class MirrorToken(Token):
 
     @classmethod
     def starts_here(klass, stream):
-        return klass.CHECK.match(stream.peek(10)) != None
+        return klass.CHECK.match(stream.peek(10)) is not None
 
     def _parse(self, stream, indent):
         stream.next() # $
@@ -247,23 +278,32 @@ class VimLCodeToken(Token):
         return "VimLCodeToken(%r,%r,%r)" % (
             self.start, self.end, self.code
         )
+
+class EndOfTextToken(Token):
+    def _parse(self, stream, indent):
+        pass # Does nothing
+
+    def __repr__(self):
+        return "EndOfText(%r)" % self.end
 # End: Tokens  }}}
 
 __ALLOWED_TOKENS = [
-    EscapeCharToken, TransformationToken, TabStopToken, MirrorToken,
+    EscapeCharToken, VisualToken, TransformationToken, TabStopToken, MirrorToken,
     PythonCodeToken, VimLCodeToken, ShellCodeToken
 ]
 def tokenize(text, indent):
     stream = _TextIterator(text)
 
-    while True:
-        done_something = False
-        for t in __ALLOWED_TOKENS:
-            if t.starts_here(stream):
-                yield t(stream, indent)
-                done_something = True
-                break
-        if not done_something:
-            stream.next()
-
+    try:
+        while True:
+            done_something = False
+            for t in __ALLOWED_TOKENS:
+                if t.starts_here(stream):
+                    yield t(stream, indent)
+                    done_something = True
+                    break
+            if not done_something:
+                stream.next()
+    except StopIteration:
+        yield EndOfTextToken(stream, indent)
 

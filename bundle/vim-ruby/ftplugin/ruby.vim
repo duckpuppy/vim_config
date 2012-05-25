@@ -68,7 +68,7 @@ if !exists("s:ruby_path")
     let s:ruby_path = type(g:ruby_path) == type([]) ? join(g:ruby_path,',') : g:ruby_path
   else
     if has("ruby") && has("win32")
-      ruby VIM::command( 'let s:ruby_paths = split("%s",",")' % $:.join(%q{,}) )
+      ruby ::VIM::command( 'let s:ruby_paths = split("%s",",")' % $:.join(%q{,}) )
     elseif executable('ruby')
       let s:code = "print $:.join(%q{,})"
       if executable('env') && $PATH !~# '\s'
@@ -91,9 +91,11 @@ if !exists("s:ruby_path")
   endif
 endif
 
-let &l:path = s:ruby_path
-if exists('s:ruby_paths')
-  let &l:tags = &g:tags . ',' . join(map(copy(s:ruby_paths),'v:val."/tags"'),',')
+if stridx(&l:path, s:ruby_path) == -1
+  let &l:path = s:ruby_path
+endif
+if exists('s:ruby_paths') && stridx(&l:tags, join(map(copy(s:ruby_paths),'v:val."/tags"'),',')) == -1
+  let &l:tags = &tags . ',' . join(map(copy(s:ruby_paths),'v:val."/tags"'),',')
 endif
 
 if has("gui_win32") && !exists("b:browsefilter")
@@ -128,13 +130,13 @@ if !exists("g:no_plugin_maps") && !exists("g:no_ruby_maps")
   let b:undo_ftplugin = b:undo_ftplugin
         \."| sil! exe 'unmap <buffer> [[' | sil! exe 'unmap <buffer> ]]' | sil! exe 'unmap <buffer> []' | sil! exe 'unmap <buffer> ]['"
         \."| sil! exe 'unmap <buffer> [m' | sil! exe 'unmap <buffer> ]m' | sil! exe 'unmap <buffer> [M' | sil! exe 'unmap <buffer> ]M'"
-        \."! sil! exe 'ounmap <buffer> im'| sil! exe 'ounmap <buffer> am'| sil! exe 'ounmap <buffer> ic'| sil! exe 'ounmap <buffer> ac'"
+        \."| sil! exe 'ounmap <buffer> im'| sil! exe 'ounmap <buffer> am'| sil! exe 'ounmap <buffer> ic'| sil! exe 'ounmap <buffer> ac'"
 
   if maparg('im','n') == ''
     onoremap <silent> <buffer> im :<C-U>call <SID>wrap_i('[m',']M')<CR>
     onoremap <silent> <buffer> am :<C-U>call <SID>wrap_a('[m',']M')<CR>
     let b:undo_ftplugin = b:undo_ftplugin
-          \."! sil! exe 'ounmap <buffer> im' | sil! exe 'ounmap <buffer> am'"
+          \."| sil! exe 'ounmap <buffer> im' | sil! exe 'ounmap <buffer> am'"
   endif
 
   if maparg('iM','n') == ''

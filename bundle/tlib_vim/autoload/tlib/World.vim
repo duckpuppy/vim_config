@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-05-01.
-" @Last Change: 2011-05-20.
-" @Revision:    0.1.955
+" @Last Change: 2012-02-28.
+" @Revision:    0.1.960
 
 " :filedoc:
 " A prototype used by |tlib#input#List|.
@@ -313,7 +313,11 @@ endf
 
 " :nodoc:
 function! s:prototype.GetBaseIdx0(idx) dict "{{{3
-    return self.GetBaseIdx(a:idx) - 1
+    let idx0 = self.GetBaseIdx(a:idx) - 1
+    if idx0 < 0
+        call tlib#notify#Echo('TLIB: Internal Error: GetBaseIdx0: idx0 < 0', 'WarningMsg')
+    endif
+    return idx0
 endf
 
 
@@ -631,7 +635,6 @@ function! s:prototype.UseInputListScratch() dict "{{{3
     hi def link InputlListIndex Constant
     hi def link InputlListCursor Search
     hi def link InputlListSelected IncSearch
-    " exec "au BufEnter <buffer> call tlib#input#Resume(". string(self.name) .")"
     setlocal nowrap
     " hi def link InputlListIndex Special
     " let b:tlibDisplayListMarks = {}

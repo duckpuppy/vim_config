@@ -3,9 +3,14 @@
 
 __all__ = [ "debug" ]
 
+import types
+
+from UltiSnips.Compatibility import as_unicode
+
 def debug(s):
-    f = open("/tmp/file.txt","a")
-    f.write(s+'\n')
+    s = as_unicode(s)
+    f = open("/tmp/file.txt","ab")
+    f.write((s + '\n').encode("utf-8"))
     f.close()
 
 

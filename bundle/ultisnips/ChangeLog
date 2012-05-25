@@ -1,3 +1,14 @@
+	- Support for ${VISUAL}. *UltiSnips-visual-placeholder*
+	- Improved handling of utf-8 characters in files and snippet definitions.
+	- Full support for :py3. UltiSnips now truly works with python >= 2.6.
+
+version 1.6:
+  - Significant speed improvements and a few bugs fixed.
+  - Better handling of non ASCII chars in snippets by assuming UTF-8 encoding
+    when no other information is available.
+  - Contributions for UltiSnips are now also accepted on GitHub: https://github.com/SirVer/ultisnips/
+  - New or improved snippets: ruby, rails, xhtml
+
 version 1.5:
   - Some critical bug fixes for new vim versions.
   - New or improved snippets: tex, texmath, python, jinja2, go, puppet, xhtml
