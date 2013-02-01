@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-__all__ = [ "Position", "Span" ]
-
+__all__ = [ "Position" ]
 
 class Position(object):
     def __init__(self, line, col):
@@ -26,6 +25,23 @@ class Position(object):
         return locals()
     line = property(**line())
 
+    def move(self, pivot, diff):
+        """pivot is the position of the first changed
+        character, diff is how text after it moved"""
+        if self < pivot: return
+        if diff.line == 0:
+            if self.line == pivot.line:
+                self.col += diff.col
+        elif diff.line > 0:
+            if self.line == pivot.line:
+                self.col += diff.col - pivot.col
+            self.line += diff.line
+        else:
+            self.line += diff.line
+            if self.line == pivot.line:
+                self.col += - diff.col + pivot.col
+
+
     def __add__(self,pos):
         if not isinstance(pos,Position):
             raise TypeError("unsupported operand type(s) for +: " \
@@ -37,41 +53,30 @@ class Position(object):
         if not isinstance(pos,Position):
             raise TypeError("unsupported operand type(s) for +: " \
                     "'Position' and %s" % type(pos))
-
         return Position(self.line - pos.line, self.col - pos.col)
 
-    def __cmp__(self, other):
-        s = self._line, self._col
-        o = other._line, other._col
-        return cmp(s,o)
+    def diff(self,pos):
+        if not isinstance(pos,Position):
+            raise TypeError("unsupported operand type(s) for +: " \
+                    "'Position' and %s" % type(pos))
+        if self.line == pos.line:
+            return Position(0, self.col - pos.col)
+        else:
+            if self > pos:
+                return Position(self.line - pos.line, self.col)
+            else:
+                return Position(self.line - pos.line, pos.col)
+        return Position(self.line - pos.line, self.col - pos.col)
+
+    def __eq__(self, other):
+        return (self._line, self._col) == (other._line, other._col)
+    def __ne__(self, other):
+        return (self._line, self._col) != (other._line, other._col)
+    def __lt__(self, other):
+        return (self._line, self._col) < (other._line, other._col)
+    def __le__(self, other):
+        return (self._line, self._col) <= (other._line, other._col)
 
     def __repr__(self):
         return "(%i,%i)" % (self._line, self._col)
-
-class Span(object):
-    def __init__(self, start, end):
-        self._s = start
-        self._e = end
-
-    def __contains__(self, pos):
-        return self._s <= pos < self._e
-
-    def start():
-        def fget(self):
-            return self._s
-        def fset(self, value):
-            self._s = value
-        return locals()
-    start = property(**start())
-
-    def end():
-        def fget(self):
-            return self._e
-        def fset(self, value):
-            self._e = value
-        return locals()
-    end = property(**end())
-
-    def __repr__(self):
-        return "(%s -> %s)" % (self._s, self._e)
 

@@ -5,7 +5,7 @@ This is a simple plugin that helps to end certain structures
 automatically.  In Ruby, this means adding `end` after `if`, `do`, `def`
 and several other keywords. In Vimscript, this amounts to appropriately
 adding `endfunction`, `endif`, etc.  There's also Bourne shell, VB
-(don't ask), and Lua support.
+(don't ask), C/C++ preprocessor, and Lua support.
 
 A primary guiding principle in designing this plugin was that an
 erroneous insertion is never acceptable.  The behavior is only triggered
@@ -40,7 +40,7 @@ Self-Promotion
 
 Like endwise.vim? Follow the repository on
 [GitHub](https://github.com/tpope/vim-endwise) and vote for it on
-[vim.org](http://www.vim.org/scripts/script.php?script_id=2136).  And if
+[vim.org](http://www.vim.org/scripts/script.php?script_id=2386).  And if
 you're feeling especially charitable, follow [tpope](http://tpo.pe/) on
 [Twitter](http://twitter.com/tpope) and
 [GitHub](https://github.com/tpope).

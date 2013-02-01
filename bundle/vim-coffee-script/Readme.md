@@ -1,18 +1,18 @@
 This project adds [CoffeeScript] support to the vim editor. It handles syntax,
-indenting, and compiling. Also included is an [eco] syntax and support for
-CoffeeScript in HTML.
+indenting, compiling, and more. Also included is support for CoffeeScript in
+Haml and HTML.
 
-![Screenshot](http://i.imgur.com/BV29H.png)
+![Screenshot](http://i.imgur.com/eUBvm.png)
 
 [CoffeeScript]: http://jashkenas.github.com/coffee-script/
-[eco]: https://github.com/sstephenson/eco
 
-### Simple Installation
+### Install from a Zipball
 
 This is the quickest way to get things running.
 
 1. Download the latest zipball from [vim.org][zipball-vim] or
-   [github][zipball-github].
+   [github][zipball-github]. The latest version on github is under Download
+   Packages (don't use the Download buttons.)
 
 2. Extract the archive into `~/.vim/`:
 
@@ -21,13 +21,13 @@ This is the quickest way to get things running.
 These steps are also used to update the plugin.
 
 [zipball-vim]: http://www.vim.org/scripts/script.php?script_id=3590
-[zipball-github]: https://github.com/kchmck/vim-coffee-script/archives/master
+[zipball-github]: https://github.com/kchmck/vim-coffee-script/downloads
 
-### Pathogen Installation
+### Install with Pathogen
 
 Since this plugin has rolling versions based on git commits, using pathogen and
 git is the preferred way to install. The plugin ends up contained in its own
-directory, and updates are just a `git pull` away.
+directory and updates are just a `git pull` away.
 
 1. Install tpope's [pathogen] into `~/.vim/autoload/` and add this line to your
    `vimrc`:
@@ -35,7 +35,7 @@ directory, and updates are just a `git pull` away.
         call pathogen#infect()
 
     To get the all the features of this plugin, make sure you also have a
-    `filetype plugin indent on` line.
+    `filetype plugin indent on` line in there.
 
 [pathogen]: http://www.vim.org/scripts/script.php?script_id=2332
 
@@ -62,11 +62,7 @@ directory, and updates are just a `git pull` away.
 
 The `CoffeeMake` command compiles the current file and parses any errors:
 
-  ![CoffeeMake](http://i.imgur.com/OKRKE.png)
-
-  ![CoffeeMake](http://i.imgur.com/PQ6ed.png)
-
-  ![CoffeeMake](http://i.imgur.com/Jp6NI.png)
+  ![CoffeeMake](http://i.imgur.com/cr9xI.png)
 
 The full signature of the command is:
 
@@ -89,9 +85,13 @@ Options given to `CoffeeMake` are passed along to `coffee`:
 
     :CoffeeMake --bare
 
+`CoffeeMake` can be manually loaded for a file with:
+
+    :compiler coffee
+
 #### Recompile on write
 
-To recompile a file when it is written, add an `autocmd` like this to your
+To recompile a file when it's written, add an `autocmd` like this to your
 `vimrc`:
 
     au BufWritePost *.coffee silent CoffeeMake!
@@ -109,7 +109,17 @@ can removed for gVim.
 The `CoffeeMake` command passes any options in the `coffee_make_options`
 variable along to the compiler. You can use this to set default options:
 
-    let coffee_make_options = "--bare"
+    let coffee_make_options = '--bare'
+
+#### Path to compiler
+
+To change the compiler used by `CoffeeMake` and `CoffeeCompile`, set
+`coffee_compiler` to the full path of an executable or the filename of one
+in your `$PATH`:
+
+    let coffee_compiler = '/usr/bin/coffee'
+
+This option is set to `coffee` by default.
 
 ### CoffeeCompile: Compile Snippets of CoffeeScript
 
@@ -120,16 +130,14 @@ CoffeeScript is compiled to JavaScript. The full signature of the command is:
 
 Calling `CoffeeCompile` without a range compiles the whole file:
 
-  ![CoffeeCompile](http://i.imgur.com/pTesp.png)
-
-  ![Compiled](http://i.imgur.com/81QMf.png)
+  ![CoffeeCompile](http://i.imgur.com/KJfSZ.png)
 
 Calling `CoffeeCompile` with a range, like in visual mode, compiles the selected
 snippet of CoffeeScript:
 
-  ![CoffeeCompile Snippet](http://i.imgur.com/Rm7iu.png)
+  ![CoffeeCompile Snippet](http://i.imgur.com/mbaUA.png)
 
-  ![Compiled Snippet](http://i.imgur.com/KmrG8.png)
+  ![Compiled Snippet](http://i.imgur.com/Ocjuc.png)
 
 This scratch buffer can be quickly closed by hitting the `q` key.
 
@@ -137,18 +145,26 @@ Using `vert` splits the CoffeeCompile buffer vertically instead of horizontally:
 
     :CoffeeCompile vert
 
+Set the `coffee_compile_vert` variable to split the buffer vertically by
+default:
+
+    let coffee_compile_vert = 1
+
 The initial size of the CoffeeCompile buffer can be given as a number:
 
     :CoffeeCompile 4
 
 #### Watch (live preview) mode
 
-Watch mode brings to vim the "Try CoffeeScript" live preview box on the
-CoffeeScript homepage (or something like it):
+Watch mode is like the Try CoffeeScript preview box on the CoffeeScript
+homepage:
 
-  ![Watch Mode](http://i.imgur.com/wIN6h.png)
-  ![Watch Mode](http://i.imgur.com/GgdCo.png)
-  ![Watch Mode](http://i.imgur.com/QdpAP.png)
+  ![Watch Mode](http://i.imgur.com/M6l1j.png)
+
+  ![Watch Mode](http://i.imgur.com/qtNmU.png)
+
+Writing some code and then exiting insert mode automatically updates the
+compiled JavaScript buffer.
 
 Use `watch` to start watching a buffer (`vert` is also recommended):
 
@@ -167,18 +183,44 @@ Use `unwatch` to stop watching a buffer:
 
     :CoffeeCompile unwatch
 
+### CoffeeLint: Lint your CoffeeScript
+
+The `CoffeeLint` command runs [coffeelint](http://www.coffeelint.org/) (version
+0.4.0 or later required) on the current file and parses any errors:
+
+    :[RANGE] CoffeeLint[!] [COFFEELINT-OPTIONS]
+
+Use it like `CoffeeMake`.
+
+  ![CoffeeLint](http://i.imgur.com/dlxF7.png)
+
+#### Default coffeelint options
+
+Options in `coffee_lint_options` are passed along to `coffeelint`:
+
+    let coffee_lint_options = '-f lint.json'
+
+#### Path to `coffeelint`
+
+Use the `coffee_linter` option to set a different path to the `coffeelint`
+executable:
+
+    let coffee_linter = '/usr/bin/coffeelint'
+
+This option is set to `coffeelint` by default.
+
 ### CoffeeRun: Run some CoffeeScript
 
 The `CoffeeRun` command compiles the current file or selected snippet and runs
 the resulting JavaScript. Output is shown at the bottom of the screen:
 
-  ![CoffeeRun](http://i.imgur.com/d4yXC.png)
+  ![CoffeeRun](http://i.imgur.com/7hwSy.png)
 
-  ![CoffeeRun Output](http://i.imgur.com/m6UID.png)
+  ![CoffeeRun Output](http://i.imgur.com/WNWvC.png)
 
-### Configuration
+### Configure Syntax Highlighting
 
-You can configure plugin behavior by adding the relevant lines to your `vimrc`.
+Add these lines to your `vimrc` to disable the relevant syntax group.
 
 #### Disable trailing whitespace error
 
@@ -201,7 +243,7 @@ they're not allowed in CoffeeScript. This can be disabled with:
 
     hi link coffeeReservedError NONE
 
-### Tuning Vim for CoffeeScript
+### Tune Vim for CoffeeScript
 
 Changing these core settings can make vim more CoffeeScript friendly.
 
@@ -209,7 +251,7 @@ Changing these core settings can make vim more CoffeeScript friendly.
 
 Folding by indentation works well for CoffeeScript functions and classes:
 
-  ![Folding](http://i.imgur.com/lpDWo.png)
+  ![Folding](http://i.imgur.com/Y0rDC.png)
 
 To fold by indentation in CoffeeScript files, add this line to your `vimrc`:
 
